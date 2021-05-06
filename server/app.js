@@ -1,7 +1,8 @@
-const express = require('express');
-const { graphqlHTTP } = require('express-graphql');
+const express = require('express')
+const { graphqlHTTP } = require('express-graphql')
 const schema = require("../schema/schema")
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const app = express();
 const PORT = 3005;
@@ -13,6 +14,9 @@ const connectionParams={
     useCreateIndex: true,
     useUnifiedTopology: true,
 }
+
+app.use(cors())
+
 mongoose.connect(url,connectionParams)
     .then( () => {
         console.log('Connected to database ')
